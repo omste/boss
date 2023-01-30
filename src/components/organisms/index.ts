@@ -1,0 +1,1 @@
+export { KpiPanel } from './kpiPanel';
