@@ -27,7 +27,7 @@ export const RepoPage = (): JSX.Element => {
     return <h1>Error found</h1>;
   }
   if (data !== undefined) {
-    console.log(data);
+    // console.log(data);
   }
 
   return (
