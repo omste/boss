@@ -34,7 +34,6 @@ export const buildGraphSeries = (ordersData: OrderData): DataItem[] => {
 };
 
 export const KpiPanel = ({ ordersData }: KpiPanelProps): JSX.Element => {
-  console.log(ordersData.slice(0, 10));
   if (ordersData === undefined || ordersData.length < 1) {
     return <h1>loading...</h1>;
   }
