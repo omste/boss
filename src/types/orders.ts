@@ -1,5 +1,2 @@
-export interface Order {
-  thing: string;
-}
-
+export type Order = any[];
 export type OrderHook = Order | Record<string, any>;

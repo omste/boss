@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import { OrderHook } from './types';
+// import { OrderHook } from './types';
 import { KpiPanel } from './components/organisms/kpiPanel';
-import Airtable from 'airtable';
+import Airtable, { FieldSet, Records } from 'airtable';
 
 const base = new Airtable({ apiKey: 'keyohiMSrvCZvEF0M' }).base('app8wLQrrIMrnn673');
 
-// could be fun here to try
-// https://www.apollographql.com/docs/react/api/link/apollo-link-rest/
-// to do - tell airtable to remove the 'var' in the examples
+// https://www.suliworld.com/2022/02/28/how-to-use-airtable-as-a-database-for-your-react-application-using-typescript-and-custom-hooks/
 const App = (): JSX.Element => {
-  const [orders, setOrders] = useState<OrderHook>({});
+  const [orders, setOrders] = useState<Records<FieldSet>>([]);
 
   // to do, fix this TS lint issue
   useEffect(() => {
@@ -18,11 +16,18 @@ const App = (): JSX.Element => {
     base('Orders')
       .select({ view: 'Grid view' })
       .eachPage((records, fetchNextPage) => {
-        setOrders(records);
+        const newOrders = [...records, ...orders];
+        setOrders([...newOrders]);
+        // setOrders([...records, ...orders]);
+        // setOrders(records);
+        console.log('records');
+        console.log(records);
+        console.log('inner ' + orders.length.toString());
         fetchNextPage();
       });
   }, []);
-  console.log(orders);
+
+  console.log(orders.length);
   return <KpiPanel ordersData={orders} />;
 };
 
