@@ -9,7 +9,6 @@ export interface KpiPanelProps {
 export const buildGraphSeries = (ordersData: OrderData): DataItem[] => {
   const series: DataItem[] = [];
   [...Array(24)].forEach((_, i) => {
-    console.log(i);
     const tmpDate = new Date();
     tmpDate.setDate(5);
     tmpDate.setMonth(tmpDate.getMonth() - i);

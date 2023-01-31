@@ -10,7 +10,7 @@ clone repo, cd to root
 
 ``` npm -i ```
 
-replace the .env file in the root directory with that supplied, or remane .env.example to .env and replace the not-token with your real github token
+(the .env thing isn't even necessary )
 
 ## then
 

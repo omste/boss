@@ -4,8 +4,10 @@ import './App.css';
 import { OrderStatus, ProductName, OrderData } from './types';
 import { KpiPanel } from './components/organisms/kpiPanel';
 import Airtable, { FieldSet, Records } from 'airtable';
-
-const base = new Airtable({ apiKey: 'keyohiMSrvCZvEF0M' }).base('app8wLQrrIMrnn673');
+// import { client } from './utils/apolloClient';
+// keyohiMSrvCZvEF0M
+// const token = process.env.REACT_APP_GIT_KEY;
+const base = new Airtable({ apiKey: process.env.REACT_APP_GIT_KEY }).base('app8wLQrrIMrnn673');
 
 const r: Array<Records<FieldSet>> = [];
 
