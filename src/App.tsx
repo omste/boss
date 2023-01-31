@@ -4,9 +4,7 @@ import './App.css';
 import { OrderStatus, ProductName, OrderData } from './types';
 import { KpiPanel } from './components/organisms/kpiPanel';
 import Airtable, { FieldSet, Records } from 'airtable';
-// import { client } from './utils/apolloClient';
-// keyohiMSrvCZvEF0M
-// const token = process.env.REACT_APP_GIT_KEY;
+
 const base = new Airtable({ apiKey: process.env.REACT_APP_GIT_KEY }).base('app8wLQrrIMrnn673');
 
 const r: Array<Records<FieldSet>> = [];
@@ -20,10 +18,10 @@ const shapeData = (grid: Records<FieldSet>): OrderData => {
       ),
       productName: order.fields.product_name as ProductName,
       price: Number(order.fields.price),
-      firstName: order.fields.first_name?.toString(), // === `${order.fields.first_name}`,
-      lastName: `${order.fields.last_name}`,
-      address: `${order.fields.address}`,
-      email: `${order.fields.email}`,
+      firstName: order.fields.first_name?.toString(),
+      lastName: order.fields.last_name?.toString(),
+      address: order.fields.address?.toString(),
+      email: order.fields.email?.toString(),
       orderStatus: order.fields.order_status as OrderStatus
     };
   });
