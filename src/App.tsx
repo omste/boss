@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 import React, { useEffect, useState, useMemo } from 'react';
 import './App.css';
-// import { OrderHook } from './types';
+import { OrderStatus, ProductName, OrderData } from './types';
 import { KpiPanel } from './components/organisms/kpiPanel';
 import Airtable, { FieldSet, Records } from 'airtable';
 
@@ -9,50 +9,20 @@ const base = new Airtable({ apiKey: 'keyohiMSrvCZvEF0M' }).base('app8wLQrrIMrnn6
 
 const r: Array<Records<FieldSet>> = [];
 
-export enum OrderStatus {
-  Cancelled = 'cancelled',
-  InProgress = 'in_progress',
-  Placed = 'placed',
-  Shipped = 'shipped'
-}
-
-export enum ProductName {
-  Bow = 'bow',
-  Bowtie = 'bowtie',
-  FishNecklace = 'fish necklace',
-  FishboneNecklace = 'fishbone necklace',
-  IHeartMilkBrooch = 'i heart milk brooch',
-  MouseEarrings = 'mouse earrings'
-}
-
-export interface Fields {
-  order_id?: number | string;
-  order_placed?: Date;
-  product_name?: ProductName;
-  price?: number;
-  first_name?: string;
-  last_name?: string;
-  address?: string;
-  email?: string;
-  order_status?: OrderStatus;
-}
-
-export type OrderData = Fields[];
-
 const shapeData = (grid: Records<FieldSet>): OrderData => {
   const retData: OrderData = grid.map((order) => {
     return {
-      order_id: Number(order.fields.order_id),
-      order_placed: new Date(
+      orderId: Number(order.fields.order_id),
+      orderPlaced: new Date(
         typeof order.fields.order_placed === 'string' ? order.fields.order_placed : '01-01-3000'
       ),
-      product_name: order.fields.product_name as ProductName,
+      productName: order.fields.product_name as ProductName,
       price: Number(order.fields.price),
-      first_name: `${order.fields.first_name}`,
-      last_name: `${order.fields.last_name}`,
+      firstName: `${order.fields.first_name}`,
+      lastName: `${order.fields.last_name}`,
       address: `${order.fields.address}`,
       email: `${order.fields.email}`,
-      order_status: order.fields.order_status as OrderStatus
+      orderStatus: order.fields.order_status as OrderStatus
     };
   });
 
