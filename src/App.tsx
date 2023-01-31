@@ -18,7 +18,7 @@ const shapeData = (grid: Records<FieldSet>): OrderData => {
       ),
       productName: order.fields.product_name as ProductName,
       price: Number(order.fields.price),
-      firstName: `${order.fields.first_name}`,
+      firstName: order.fields.first_name?.toString(), // === `${order.fields.first_name}`,
       lastName: `${order.fields.last_name}`,
       address: `${order.fields.address}`,
       email: `${order.fields.email}`,
@@ -34,6 +34,7 @@ const App = (): JSX.Element => {
   const ordersData = useMemo(() => shapeData(orders), [orders]);
   useEffect(() => {
     let c = 0;
+    // TO DO : obs
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     base('Orders')
       .select({ view: 'Grid view' })

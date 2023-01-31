@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { OrderData } from '../../types';
-import { Totals, SalesGraph, DataItem } from '../molecules';
+import { Totals, SalesGraph, DataItem, LatestItems } from '../molecules';
 
 export interface KpiPanelProps {
   ordersData: OrderData;
@@ -8,7 +8,7 @@ export interface KpiPanelProps {
 
 export const buildGraphSeries = (ordersData: OrderData): DataItem[] => {
   const series: DataItem[] = [];
-  [...Array(36)].forEach((_, i) => {
+  [...Array(24)].forEach((_, i) => {
     console.log(i);
     const tmpDate = new Date();
     tmpDate.setDate(5);
@@ -16,6 +16,7 @@ export const buildGraphSeries = (ordersData: OrderData): DataItem[] => {
     const dataItem: DataItem = {
       month: tmpDate.getMonth() + 1,
       year: tmpDate.getFullYear(),
+      date: tmpDate,
       val: ordersData
         .filter(
           (obj) =>
@@ -27,13 +28,12 @@ export const buildGraphSeries = (ordersData: OrderData): DataItem[] => {
           return prev + next;
         }, 0)
     };
-    series.push(dataItem);
+    series.unshift(dataItem);
   });
   return series;
 };
 
 export const KpiPanel = ({ ordersData }: KpiPanelProps): JSX.Element => {
-  // console.log(ordersData);
   console.log(ordersData.slice(0, 10));
   if (ordersData === undefined || ordersData.length < 1) {
     return <h1>loading...</h1>;
@@ -97,6 +97,7 @@ export const KpiPanel = ({ ordersData }: KpiPanelProps): JSX.Element => {
         />
       </div>
       <SalesGraph series={series} />
+      <LatestItems items={ordersData.slice(0, 10)} />
     </div>
   );
 };
