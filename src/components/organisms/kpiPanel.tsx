@@ -96,7 +96,7 @@ export const KpiPanel = ({ ordersData }: KpiPanelProps): JSX.Element => {
         />
       </div>
       <SalesGraph series={series} />
-      <LatestItems items={ordersData.slice(0, 10)} />
+      <LatestItems items={ordersData.slice(0, 5)} />
     </div>
   );
 };

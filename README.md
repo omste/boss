@@ -44,11 +44,8 @@ Pretifies things
 ## Known Issues
 
 * some high severity npm issues that need a fixing
-* no debounce on changing search term
 * set up (sprint zero style work) of eslint, husky, prettier, module compatibility, npm version took too long
-* no design lib, usually I like to use tailwind
 * unit test coverage is sketchy as
-* no dockerisation (not created many docker containers and didn't want to do it badly)
 * no e2e tests (cypress is my fave for this)
 
 ## What I would like if this were a real project
@@ -58,6 +55,5 @@ Pretifies things
 * same goes for queries, types, and utils
 * build process quality gates e2e testing, sonarcube, lighhouse (or other WACG) and perhaps browserstack
 * ordering, array slicing, a chat with the PO about how much should be SSR, etc.
-* url to reflect search term, ordering, etc
 
 
